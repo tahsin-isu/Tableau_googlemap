@@ -10,7 +10,7 @@
       padding: 0px
     }
   </style>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgX0msxeBiaJSSwJsMnckbreKLGhJnLY0"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
   <script>
     function initialize() {
       var params = getQueryParams();
@@ -20,6 +20,13 @@
         mapTypeId: google.maps.MapTypeId.SATELLITE // Set the map type to satellite
       };
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      
+      // Create a marker and place it at the specified location
+      var marker = new google.maps.Marker({
+        position: mapOptions.center,
+        map: map,
+        title: 'Location' // Optional title for the marker
+      });
     }
     function getQueryParams(){
       var params = {};
