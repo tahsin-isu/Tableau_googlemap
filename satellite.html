@@ -10,13 +10,13 @@
       padding: 0px
     }
   </style>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgX0msxeBiaJSSwJsMnckbreKLGhJnLY0"></script>
   <script>
     function initialize() {
       var params = getQueryParams();
       var mapOptions = {
         center: new google.maps.LatLng(params.lat, params.lon),
-        zoom: 18, // Increased zoom level
+        zoom: 18,
         mapTypeId: google.maps.MapTypeId.SATELLITE // Set the map type to satellite
       };
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
