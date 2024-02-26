@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Satellite View</title>
+  <title>Place View</title>
   <style>
     html, body, #map-canvas {
       height: 100%;
@@ -17,9 +17,15 @@
       var mapOptions = {
         center: new google.maps.LatLng(params.lat, params.lon),
         zoom: 14,
-        mapTypeId: google.maps.MapTypeId.SATELLITE // Set the map type to satellite
+        mapTypeId: google.maps.MapTypeId.ROADMAP // Set the map type to road map
       };
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+      var marker = new google.maps.Marker({
+        position: mapOptions.center,
+        map: map,
+        title: params.placeName // Set the marker title to the place name
+      });
     }
     function getQueryParams(){
       var params = {};
