@@ -5,18 +5,37 @@
 </head>
 <body>
   <iframe
-  style="position:fixed; 
-  top:0px; 
-  left:0px; 
-  bottom:0px; 
-  width:100%; 
-  height:100%; 
-  border:none; 
-  margin:0; 
-  padding:0; 
-  overflow:hidden;"
-    src="https://www.google.com/maps/embed/v1/view?key=AIzaSyDgX0msxeBiaJSSwJsMnckbreKLGhJnLY0&center=39.8283,-98.5795&zoom=4&maptype=satellite"
-    allowfullscreen="">
-  </iframe>
+    id="map-frame"
+    style="position:fixed; 
+      top:0px; 
+      left:0px; 
+      bottom:0px; 
+      width:100%; 
+      height:100%; 
+      border:none; 
+      margin:0; 
+      padding:0; 
+      overflow:hidden;"
+    allowfullscreen=""
+  ></iframe>
+
+  <script>
+    // Function to update the src attribute of the iframe with Latitude and Longitude parameters
+    function updateMap(Latitude, Longitude) {
+      var mapFrame = document.getElementById('map-frame');
+      var newSrc = 'https://www.google.com/maps/embed/v1/view?key=AIzaSyDgX0msxeBiaJSSwJsMnckbreKLGhJnLY0&center=' + Latitude + ',' + Longitude + '&zoom=12';
+      mapFrame.src = newSrc;
+    }
+
+    // Get Latitude and Longitude from URL parameters
+    var urlParams = new URLSearchParams(window.location.search);
+    var Latitude = urlParams.get('Latitude');
+    var Longitude = urlParams.get('Longitude');
+
+    // Update the map with the provided Latitude and Longitude
+    if (Latitude && Longitude) {
+      updateMap(Latitude, Longitude);
+    }
+  </script>
 </body>
 </html>
