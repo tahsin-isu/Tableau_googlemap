@@ -10,21 +10,18 @@
       padding: 0px
     }
   </style>
-  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgX0msxeBiaJSSwJsMnckbreKLGhJnLY0"></script>
   <script>
     function initialize() {
       var params = getQueryParams();
-      var apiKey = params.apiKey || ''; // Default to empty string if apiKey parameter is not provided
-
       var mapOptions = {
         center: new google.maps.LatLng(params.lat, params.lon),
-        zoom: parseInt(params.zoom) || 18,
-        mapTypeId: google.maps.MapTypeId.SATELLITE,
-        apiKey: apiKey // Pass the apiKey to the map options
+        zoom: parseInt(params.zoom) || 18, // Default zoom level is 18
+        mapTypeId: google.maps.MapTypeId.SATELLITE // Set the map type to satellite
       };
-
       var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
+      
+      // Check if labels parameter is provided and set labels accordingly
       if (params.labels === 'true') {
         var labelsStyle = [{
           elementType: 'labels',
@@ -33,9 +30,18 @@
         var mapLabels = new google.maps.StyledMapType(labelsStyle);
         map.mapTypes.set('labeled_satellite', mapLabels);
         map.setMapTypeId('labeled_satellite');
+        
+        // Remove the marker if labels are turned on
+        return;
       }
+      
+      // Create a marker and set its position
+      var marker = new google.maps.Marker({
+        position: mapOptions.center,
+        map: map
+      });
     }
-
+    
     function getQueryParams(){
       var params = {};
       var query = window.location.search.substring(1);
@@ -48,7 +54,7 @@
       }
       return params;
     }
-
+    
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 </head>
