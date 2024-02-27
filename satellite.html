@@ -30,6 +30,9 @@
         var mapLabels = new google.maps.StyledMapType(labelsStyle);
         map.mapTypes.set('labeled_satellite', mapLabels);
         map.setMapTypeId('labeled_satellite');
+        
+        // Remove the marker if labels are turned on
+        return;
       }
       
       // Create a marker and set its position
@@ -38,6 +41,7 @@
         map: map
       });
     }
+    
     function getQueryParams(){
       var params = {};
       var query = window.location.search.substring(1);
@@ -50,6 +54,7 @@
       }
       return params;
     }
+    
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 </head>
