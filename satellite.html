@@ -10,10 +10,13 @@
       padding: 0px
     }
   </style>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDgX0msxeBiaJSSwJsMnckbreKLGhJnLY0"></script>
+  <!-- Remove the API key from the script source -->
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
   <script>
     function initialize() {
       var params = getQueryParams();
+      // Fetch the API key from the query parameters
+      var apiKey = params.apiKey || 'YOUR_API_KEY';
       var mapOptions = {
         center: new google.maps.LatLng(params.lat, params.lon),
         zoom: parseInt(params.zoom) || 18, // Default zoom level is 18
